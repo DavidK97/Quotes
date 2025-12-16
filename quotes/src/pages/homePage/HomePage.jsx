@@ -9,16 +9,7 @@ export default function HomePage() {
       <p>Kunne display en random quote eller andet sjovt</p>
 
 
-      <div className="help-layout">
-      <h2>Website Help</h2>
-
-      <nav>
-        <NavLink to="faq">FAQ and how to use the API</NavLink>
-        <NavLink to="contact">Contact Us</NavLink>
-      </nav>
-
-      <Outlet/> 
-    </div>
+  
     </div>
   );
 }

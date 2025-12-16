@@ -33,6 +33,7 @@ const login = (user, password) => {
 
   return fetch(BASE_URL + LOGIN_ENDPOINT, options) 
     .then(handleHttpErrors) 
+    .then((res) => {
       setToken(res.token); 
     });
 };

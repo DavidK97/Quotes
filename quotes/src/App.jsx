@@ -1,4 +1,3 @@
-
 import { Outlet } from "react-router";
 import Navbar from "./layouts/navbar/Navbar";
 import Footer from "./layouts/footer/Footer";
