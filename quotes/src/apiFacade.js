@@ -1,4 +1,4 @@
-const BASE_URL = "https://tripapi.cphbusinessapps.dk/api/";
+const BASE_URL = "https://quote.davidk97.dk/api/v1/";
 const LOGIN_ENDPOINT = "auth/login";
 
 function handleHttpErrors(res) {
@@ -42,6 +42,11 @@ const fetchData = (endpoint) => {
   const options = makeOptions("GET", true); //True add's the token
   return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
 };
+
+const postData = (endpoint) => {
+  const options = makeOptions("POST", true); //True add's the token
+  return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
+}
 
 const makeOptions = (method, addToken, body) => {
   var opts = {
@@ -95,7 +100,8 @@ const facade = {
   fetchData,
   getUserRoles,
   hasUserAccess,
-  getUsername
+  getUsername,
+  postData
 };
 
 export default facade;

@@ -1,0 +1,32 @@
+.helpPage nav {
+
+    /*TODO Kunne være et fint sted at omskrive og vise et eksempel på grid */
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+    
+}
+
+.helpPage nav a {
+    padding: 10px;
+    border: 2px solid grey;
+   
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.helpPage nav a:hover {
+    border-color: #E6E8FF;
+}
+
+.helpPage nav a.active {
+    border: 2px solid grey;
+    background: #E6E8FF;
+}
+
+.outletContainer {
+    display: flex;
+    justify-content: center; /* Vertikal centrering */
+    padding-top: 50px;
+}

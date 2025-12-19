@@ -1,11 +1,10 @@
 :root {
-    --primary: #bc4123;
-    --secondary: #2b3452;
+    --primary: #E6E8FF;
+    --secondary: #F8EDCA;
 }
 
 body {
     margin: 0;
-    padding: 20px;
     font-family: "Poppins";
     background: var(--secondary);
 }
@@ -24,23 +23,26 @@ p {
     display: flex;
     gap: 16px;
     justify-content: flex-end;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    padding: 10px 20px;
+    background: var(--primary);
 }
 
 .title {
     margin-right: auto;
-    border-bottom: 3px solid var(--primary);
+    border-bottom: 5px solid var(--secondary);
     margin-bottom: 20px;
 }
 
 .link {
-    text-decoration: none; /*Fjerner underscore på links */
+    text-decoration: none;
+    /*Fjerner underscore på links */
     padding: 6px;
     border-radius: 10px;
 
 }
 
 .active {
-    background-color: var(--primary);
+    background-color: var(--secondary);
+    border: 2px solid grey;
 }

@@ -4,7 +4,7 @@ import { NavLink, Outlet, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 
 import facade from "../../apiFacade";
-import LogIn from "../../components/security/Login";
+import LogIn from "../../components/security/LogIn";
 import LoggedIn from "../../components/security/LoggedIn";
 
 export default function Navbar() {
@@ -85,7 +85,7 @@ export default function Navbar() {
         Help
       </NavLink>
 
-      {loggedIn && roles.includes("admin") && (
+      {loggedIn && roles.includes("ADMIN") && (
         <NavLink
           to="/admin-tools"
           className={({ isActive }) =>
