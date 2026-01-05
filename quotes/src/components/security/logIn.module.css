@@ -1,7 +1,7 @@
 .container {
     display: flex;
     justify-content: center;
-    
+    padding-right: 20px;
 }
 
 .form {
@@ -12,18 +12,15 @@
 
 .input,
 .button {
-    width: 120px;
+    width: 125px;  
     height: 25px;
-    padding: 2px 10px; 
+    padding: 2px 30px; 
     margin: 2px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     border-radius: 8px;
     box-sizing: border-box;
     border: 2px solid grey;
-    background-color: #E6E8FF;
-
-   
-    
+    background-color: #E6E8FF; 
 }
 
 

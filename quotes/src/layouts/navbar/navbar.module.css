@@ -24,11 +24,12 @@ p {
     gap: 16px;
     justify-content: flex-end;
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px;
     background: var(--primary);
 }
 
 .title {
+    padding: 10px;
     margin-right: auto;
     border-bottom: 5px solid var(--secondary);
     margin-bottom: 20px;
@@ -45,4 +46,9 @@ p {
 .active {
     background-color: var(--secondary);
     border: 2px solid grey;
+}
+
+.logInContainer {
+
+
 }

@@ -1,0 +1,30 @@
+.container {
+  padding: 20px;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.link {
+  padding: 10px 15px;
+  background-color: #e6e8ff;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.link:hover {
+  background-color: grey;
+}
+
+.link.active {
+  border: 2px solid whitesmoke;
+  background: grey;
+   grid-column: span 2;
+
+
+}

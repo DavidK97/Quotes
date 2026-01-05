@@ -13,9 +13,11 @@ import QuoteDetailsPage from "./pages/quote/quoteDetailsPage/QuoteDetailsPage.js
 import AddQuotePage from "./pages/quote/addQuotePage/AddQuotePage.jsx";
 import AuthorDetailsPage from "./pages/author/authorDetailsPage/AuthorDetailsPage.jsx";
 import AddAuthorPage from "./pages/author/addAuthorPage/AddAuthorPage.jsx";
-import AdminToolsPage from "./pages/admin-tools/adminPage/AdminToolsPage.jsx";
+
 import HelpPage from "./pages/helpPage/HelpPage.jsx";
 import { AdminRoutes } from "./components/security/AdminRoutes.jsx";
+import AdminToolsPage from "./pages/admin-tools/admin-tools-dashboard/AdminToolsPage.jsx";
+import QuoteToolsPage from "./pages/admin-tools/quote-tools/QuoteToolsPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -60,7 +62,7 @@ createRoot(document.getElementById("root")).render(
         <Route element={<AdminRoutes />}>
           <Route path="admin-tools" element={<AdminToolsPage />}>
             <Route path="users" element={<h2>Edit users</h2>} />
-            <Route path="quotes" element={<h2>Edit quotes</h2>} />
+            <Route path="quotes" element={<QuoteToolsPage/>} />
             <Route path="categories" element={<h2>Edit Categories</h2>} />
             <Route path="authors" element={<h2>Edit authors</h2>} />
           </Route>

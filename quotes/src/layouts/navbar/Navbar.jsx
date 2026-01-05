@@ -96,7 +96,7 @@ export default function Navbar() {
         </NavLink>
       )}
 
-      <div className="login-section">
+      <div className={styles.logInContainer}>
         {!loggedIn ? (
           <LogIn login={login} />
         ) : (

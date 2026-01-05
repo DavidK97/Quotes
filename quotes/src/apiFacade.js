@@ -48,6 +48,11 @@ const postData = (endpoint) => {
   return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
 }
 
+const deleteData = (endpoint) => {
+  const options = makeOptions("DELETE", true); //True add's the token
+  return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
+}
+
 const makeOptions = (method, addToken, body) => {
   var opts = {
     method: method,
@@ -101,7 +106,8 @@ const facade = {
   getUserRoles,
   hasUserAccess,
   getUsername,
-  postData
+  postData,
+  deleteData
 };
 
 export default facade;

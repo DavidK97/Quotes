@@ -36,6 +36,8 @@ export default function QuotesPage() {
           : quote
       )
     );
+
+    alert("Liked quote: " + quoteId);
   }
 
   useEffect(() => {
