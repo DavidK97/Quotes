@@ -9,7 +9,7 @@ export default function QuoteToolsPage() {
   const blankQuote = { id: "", text: "", category: "", author: "" };
   const [quoteToEdit, setQuoteToEdit] = useState(blankQuote);
 
-  //TODO kald til APU
+  //TODO kald til API
   function editQuote(quote) {
     setQuoteToEdit(quote);
   }

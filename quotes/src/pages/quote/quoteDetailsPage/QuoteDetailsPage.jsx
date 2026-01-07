@@ -1,6 +1,8 @@
 import { useParams } from "react-router";
 import facade from "../../../apiFacade";
 import { useEffect, useState } from "react";
+import QuoteCard from "../../../components/detailCard/DetailCard";
+import DetailCard from "../../../components/detailCard/DetailCard";
 
 export default function QuoteDetailsPage() {
   let { quoteId } = useParams();
@@ -9,56 +11,40 @@ export default function QuoteDetailsPage() {
   const hasAdminAccess = facade.hasUserAccess("ADMIN", loggedIn);
   const [quote, setQuote] = useState(null);
 
-  // Alternative method to restrict user access (if not using a protected route)
-  if (!hasAdminAccess && !hasUserAccess) {
-    return <p>Log in as a user or admin to view the quote details</p>;
-  }
 
   useEffect(() => {
     const promise = facade.fetchData("quotes/" + quoteId);
-    promise.then((data) => setQuote(data));
+    promise.then((data) => {
+      setQuote(data);
+    });
   }, [quoteId]);
 
+  // Alternative method to restrict user access (if not using a protected route)
+  // "Early return" conditional rendering example
+  if (!hasAdminAccess && !hasUserAccess) {
+    return <p>Log in as a user or admin to view the quote details</p>;
+  }
+ 
+
+  //Example of "loading state" conditional rendering
   if (!quote) {
-  return <p>Loading quote...</p>;
-}
+    return <p>Loading quote...</p>;
+  }
 
   return (
-    <div>
-      <h2>QuoteDetails</h2>
-
-      <table>
-        <thead>
-        <tr>
-          <th>Id</th>
-          <th>Quote Text</th>
-          <th>Category Id</th>
-          <th>Category Title</th>
-          <th>Author Id</th>
-          <th>Author Name</th>
-          <th>Author Country</th>
-          <th>Author birthday</th>
-          <th>Posted By</th>
-          <th>Created At</th>
-          <th>Favorited Count</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{quote.id}</td>
-          <td>{quote.text}</td>
-          <td>{quote.category.id}</td>
-          <td>{quote.category.title}</td>
-          <td>{quote.author.id}</td>
-          <td>{quote.author.name}</td>
-          <td>{quote.author.country}</td>
-          <td>{quote.author.dateOfBirth}</td>
-          <td>{quote.user.username}</td>
-          <td>{quote.createdAt}</td>
-          <td>{quote.favoritedCount}</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
+    <DetailCard title={"Quote nr. " + quoteId}>
+      <p><strong>Text:</strong> {quote.text}</p>
+      <p><strong>Category Id:</strong> {quote.category.id}</p>
+      <p><strong>Category:</strong> {quote.category.title}</p>
+      <p><strong>Author Id:</strong> {quote.author.id}</p>
+      <p><strong>Author:</strong> {quote.author.name}</p>
+      <p><strong>Author Country:</strong> {quote.author.country}</p>
+      <p><strong>Birthday:</strong> {quote.author.dateOfBirth}</p>
+      <p><strong>Posted by:</strong> {quote.user.username}</p>
+      <p><strong>Created at:</strong> {quote.createdAt}</p>
+      <p><strong>Likes:</strong> {quote.favoritedCount}</p>
+    </DetailCard>
   );
+
 }
+

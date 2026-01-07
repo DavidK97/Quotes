@@ -8,45 +8,70 @@ export default function QuotesPage() {
   const [quotes, setQuotes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   function getAllQuotes() {
     const promise = facade.fetchData("quotes");
     promise.then((data) => setQuotes(data));
+    promise.catch((error) => {
+      console.error("Error: ", error.status);
+      setErrorMessage("Could not retrieve quotes");
+    });
   }
 
-  function getAllCategories() {
-    const promise = facade.fetchData("categories");
-    promise.then((data) => setCategories(data));
+  // WARNING: Define inside the useEffect, to avoid possible cascading rendering
+  async function fetchCategories() {
+    try {
+      const data = await facade.fetchData("categories");
+      setCategories(data);
+    } catch (error) {
+      console.error("Error retrieving categories:", error);
+      setErrorMessage("Could not retrieve categories");
+    }
   }
 
   //TODO, så man ikke kan like flere gange
   //TODO Lav conditional rendering så man ikke kan se like-knappen medmindre man er logget ind
-  // Uncaught promise fordi vores backend returnerer en tekst-streng og ikke JSON
+  //Uncught promise fordi vores backend returnerer en tekst-streng og ikke JSON.
   function likeQuote(quoteId) {
     const username = facade.getUsername();
 
     const promise = facade.postData(
-      "users/" + username + "favorites/" + quoteId
+      "users/" + username + "/favorites/" + quoteId
     );
 
-    setQuotes((quotes) =>
-      quotes.map((quote) =>
-        quote.id === quoteId
-          ? { ...quote, favoritedCount: quote.favoritedCount + 1 }
-          : quote
-      )
-    );
+    promise.then((data) => {
+      console.log(data);
 
-    alert("Liked quote: " + quoteId);
+      setQuotes((quotes) =>
+        quotes.map((quote) =>
+          quote.id === quoteId
+            ? { ...quote, favoritedCount: quote.favoritedCount + 1 }
+            : quote
+        )
+      );
+    });
+    promise.catch((error) => {
+      console.error("Error: ", error.status);
+      setErrorMessage("Could not like quote");
+      alert("Something went wrong, Quote could not be liked");
+    });
   }
 
   useEffect(() => {
     getAllQuotes();
-    getAllCategories();
+    fetchCategories();
+
+    // Cleanup function example
+    sessionStorage.setItem("user", "active on quotes page");
+    return () => {
+      sessionStorage.removeItem("user");
+    };
   }, []);
 
   return (
     <div>
+      {errorMessage && <p>{errorMessage}</p>}
       <div className="quote-table">
         <CategorySelector
           categories={categories}

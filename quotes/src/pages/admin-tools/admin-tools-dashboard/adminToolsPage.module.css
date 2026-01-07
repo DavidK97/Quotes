@@ -24,7 +24,7 @@
 .link.active {
   border: 2px solid whitesmoke;
   background: grey;
-   grid-column: span 2;
+  grid-column: span 2;
 
 
 }

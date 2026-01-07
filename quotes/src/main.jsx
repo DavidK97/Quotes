@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+
 import { createRoot } from "react-dom/client";
 
 import App from "./App.jsx";
@@ -44,7 +44,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="quotes">
           <Route index element={<QuotesPage />} />
 
-          <Route path=":quoteId" element={<QuoteDetailsPage />} />
+          <Route path=":quoteId" element={<QuoteDetailsPage />} errorElement={<h2>Could not find quote</h2>} />
           <Route path="add-quote" element={<AddQuotePage />} />
         </Route>
 
@@ -67,6 +67,8 @@ createRoot(document.getElementById("root")).render(
             <Route path="authors" element={<h2>Edit authors</h2>} />
           </Route>
         </Route>
+
+         <Route path="*" element={<h2>404 – Page not found</h2>} />
 
       </Route>
     </Routes>

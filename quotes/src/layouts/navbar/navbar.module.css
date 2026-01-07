@@ -1,21 +1,12 @@
-:root {
-    --primary: #E6E8FF;
-    --secondary: #F8EDCA;
-}
+
 
 body {
     margin: 0;
-    font-family: "Poppins";
-    background: var(--secondary);
+    background: #F8EDCA;
 }
 
 * {
     color: black;
-    margin: 0;
-}
-
-p {
-    margin: 20px 0;
 }
 
 /* nav */
@@ -25,26 +16,25 @@ p {
     justify-content: flex-end;
     width: 100%;
     padding: 10px;
-    background: var(--primary);
+    background: #E6E8FF;
 }
 
 .title {
     padding: 10px;
     margin-right: auto;
-    border-bottom: 5px solid var(--secondary);
+    border-bottom: 5px solid #F8EDCA;
     margin-bottom: 20px;
 }
 
 .link {
     text-decoration: none;
-    /*Fjerner underscore på links */
     padding: 6px;
     border-radius: 10px;
 
 }
 
 .active {
-    background-color: var(--secondary);
+    background-color: #F8EDCA;
     border: 2px solid grey;
 }
 

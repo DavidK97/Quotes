@@ -19,8 +19,8 @@ export default function QuoteTable({ quotes, selectedCategory, onLike }) {
   const quoteItems = filteredQuotes.map((quote) => (
     <tr key={quote.id}>
       <td id={quote.id}>{quote.text}</td>
-      <td id={quote.id}>{quote.category.title}</td>
-      <td id={quote.id}>{quote.author.name}</td>
+      <td>{quote.category?.title || "Unkown category" }</td>
+      <td>{quote.author?.name || "Unknown author"}</td>
       <td>{quote.favoritedCount}</td>
       <td>
         <button
@@ -36,6 +36,7 @@ export default function QuoteTable({ quotes, selectedCategory, onLike }) {
   ));
 
   return (
+    //Event bubbling example
     <div className={styles.container} onClick={handleOnClick}>
       <table>
         <thead>

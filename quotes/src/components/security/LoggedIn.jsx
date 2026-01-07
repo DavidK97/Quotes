@@ -12,7 +12,7 @@ function LoggedIn({ loggedIn, username, roles}) {
   return (
     <div>
       <h3>{dataFromServer.msg}</h3>
-      <h3>{"Hej: " + username + " med roles: " + roles}</h3>
+      <h3>{"Hej: " + username}</h3>
     </div>
   );
 }
