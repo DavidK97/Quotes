@@ -24,8 +24,8 @@ export default function QuoteTable({ quotes, selectedCategory, onLike }) {
       <td>{quote.favoritedCount}</td>
       <td>
         <button
-          onClick={(event) => {
-            event.stopPropagation(); // Stops bubbling
+          onClick={(event) => { 
+            event.stopPropagation(); // !! stops bubbling
             onLike(quote.id);
           }}
         >

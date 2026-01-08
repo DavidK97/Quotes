@@ -44,12 +44,12 @@ const fetchData = (endpoint) => {
 };
 
 const postData = (endpoint) => {
-  const options = makeOptions("POST", true); //True add's the token
+  const options = makeOptions("POST", true); 
   return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
 }
 
 const deleteData = (endpoint) => {
-  const options = makeOptions("DELETE", true); //True add's the token
+  const options = makeOptions("DELETE", true); 
   return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
 }
 

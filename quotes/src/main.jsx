@@ -18,12 +18,12 @@ import HelpPage from "./pages/helpPage/HelpPage.jsx";
 import { AdminRoutes } from "./components/security/AdminRoutes.jsx";
 import AdminToolsPage from "./pages/admin-tools/admin-tools-dashboard/AdminToolsPage.jsx";
 import QuoteToolsPage from "./pages/admin-tools/quote-tools/QuoteToolsPage.jsx";
+import ContactPage from "./pages/contactPage/ContactPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
-      {/* Root layout med Navbar og Footer */}
-      <Route path="/" element={<App />}>
+      <Route path="/" element={<App />}> {/* Root layout med Navbar og Footer */}
         <Route index element={<HomePage />} />
 
         <Route path="help" element={<HelpPage />}>
@@ -31,14 +31,7 @@ createRoot(document.getElementById("root")).render(
             path="faq"
             element={<h2>faq page med hvordan man bruger API'et</h2>}
           />
-          <Route
-            path="contact"
-            element={
-              <h2>
-                Kunne have input felt til en besked og input felt med email og så en submit knap
-              </h2>
-            }
-          />
+          <Route path="contact"element={<ContactPage />} />
         </Route>
 
         <Route path="quotes">

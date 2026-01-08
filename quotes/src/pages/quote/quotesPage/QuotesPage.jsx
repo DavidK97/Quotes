@@ -59,11 +59,13 @@ export default function QuotesPage() {
   }
 
   useEffect(() => {
+
     getAllQuotes();
     fetchCategories();
 
     // Cleanup function example
     sessionStorage.setItem("user", "active on quotes page");
+    
     return () => {
       sessionStorage.removeItem("user");
     };

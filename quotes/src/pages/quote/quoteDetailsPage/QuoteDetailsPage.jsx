@@ -1,21 +1,25 @@
 import { useParams } from "react-router";
 import facade from "../../../apiFacade";
 import { useEffect, useState } from "react";
-import QuoteCard from "../../../components/detailCard/DetailCard";
 import DetailCard from "../../../components/detailCard/DetailCard";
 
+
 export default function QuoteDetailsPage() {
-  let { quoteId } = useParams();
   const loggedIn = facade.loggedIn();
   const hasUserAccess = facade.hasUserAccess("USER", loggedIn);
   const hasAdminAccess = facade.hasUserAccess("ADMIN", loggedIn);
+
+  let { quoteId } = useParams();
   const [quote, setQuote] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
 
   useEffect(() => {
     const promise = facade.fetchData("quotes/" + quoteId);
-    promise.then((data) => {
-      setQuote(data);
+    promise.then((data) => setQuote(data));
+    promise.catch((error) => {
+      console.error("Error: ", error.status);
+      setErrorMessage("Could not retrieve quote");
     });
   }, [quoteId]);
 
@@ -23,6 +27,10 @@ export default function QuoteDetailsPage() {
   // "Early return" conditional rendering example
   if (!hasAdminAccess && !hasUserAccess) {
     return <p>Log in as a user or admin to view the quote details</p>;
+  }
+
+  if (errorMessage) {
+    return <p>{errorMessage}</p>;
   }
  
 
@@ -32,18 +40,21 @@ export default function QuoteDetailsPage() {
   }
 
   return (
-    <DetailCard title={"Quote nr. " + quoteId}>
-      <p><strong>Text:</strong> {quote.text}</p>
-      <p><strong>Category Id:</strong> {quote.category.id}</p>
-      <p><strong>Category:</strong> {quote.category.title}</p>
-      <p><strong>Author Id:</strong> {quote.author.id}</p>
-      <p><strong>Author:</strong> {quote.author.name}</p>
-      <p><strong>Author Country:</strong> {quote.author.country}</p>
-      <p><strong>Birthday:</strong> {quote.author.dateOfBirth}</p>
-      <p><strong>Posted by:</strong> {quote.user.username}</p>
-      <p><strong>Created at:</strong> {quote.createdAt}</p>
-      <p><strong>Likes:</strong> {quote.favoritedCount}</p>
-    </DetailCard>
+    <div>
+      <DetailCard title={"Quote nr. " + quoteId}>
+       <p><strong>Text:</strong> {quote.text}</p>
+       <p><strong>Category Id:</strong> {quote.category.id}</p>
+       <p><strong>Category:</strong> {quote.category.title}</p>
+       <p><strong>Author Id:</strong> {quote.author.id}</p>
+       <p><strong>Author:</strong> {quote.author.name}</p>
+       <p><strong>Author Country:</strong> {quote.author.country}</p>
+       <p><strong>Birthday:</strong> {quote.author.dateOfBirth}</p>
+       <p><strong>Posted by:</strong> {quote.user.username}</p>
+       <p><strong>Created at:</strong> {quote.createdAt}</p>
+       <p><strong>Likes:</strong> {quote.favoritedCount}</p>
+      </DetailCard>
+    </div>
+
   );
 
 }
