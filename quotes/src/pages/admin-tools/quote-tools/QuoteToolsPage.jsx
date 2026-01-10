@@ -19,16 +19,16 @@ export default function QuoteToolsPage() {
       promise.then(() => {
         setQuotes(quotes.filter((q) => q.id !== quoteId));
       })
-      .catch((err) => console.error(err));
+      .catch((error) => console.error(error));
   }
 
-  //TODO kald til API
+ 
   function updateQuote(quote) {
     const promise = facade.putData("quotes/" + quote.id, quote);
     promise
       .then((updatedQuote) => {
         setQuotes(
-          quotes.map((q) => (q.id === updatedQuote.id ? updatedQuote : q))
+          quotes.map((quote) => (quote.id === updatedQuote.id ? updatedQuote : quote))
         );
         setQuoteToEdit(blankQuote);
       })

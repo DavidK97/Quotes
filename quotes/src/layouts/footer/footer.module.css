@@ -1,17 +1,8 @@
 .footerContainer {
   display: flex;
   justify-content: center; 
-  align-items: flex-end;   
-  min-height: 100vh;  
-  gap: 20px; 
+  align-items: center;  
+  background: #E6E8FF;
 }
 
-.footerText {
 
-}
-
-.darkmodeButton {
-    background-color: 
-    
-
-}

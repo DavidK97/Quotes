@@ -39,8 +39,9 @@ export default function AdminToolsPage() {
           Users
         </NavLink>
       </nav>
-
-      <Outlet />
+      <div className={styles.outletContainer}>
+        <Outlet />
+      </div>
     </div>
   );
 }

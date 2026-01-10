@@ -1,6 +1,39 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import facade from "../../../apiFacade";
+import styled from "styled-components";
+
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+  form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    min-width: 300px;
+    align-items: flex-end;
+
+    @media (max-width: 700px) {
+      flex-direction: column;
+      align-items: stretch;   
+    }
+  }
+
+  input, textarea, select {
+    padding: 5px;
+    border: 1px solid grey;
+    border-radius: 10px;
+  }
+
+  
+`;
+
+
 
 export default function AddQuotePage() {
   const navigate = useNavigate();
@@ -45,8 +78,8 @@ export default function AddQuotePage() {
   }
 
   return (
-    <div>
-      <h2>Add New Quote</h2>
+    <Wrapper>
+      <h3>Add New Quote</h3>
       {errorMessage && <p>{errorMessage}</p>}
 
       <form onSubmit={handleSubmit}>
@@ -57,13 +90,12 @@ export default function AddQuotePage() {
           onChange={handleChange}
           required
         />
-        <h3>Author Info</h3>
+      
         <label>Name</label>
         <input
           id="authorName"
           value={newQuote.authorName}
           onChange={handleChange}
-          required
         />
         <label>Country</label>
         <input
@@ -96,6 +128,6 @@ export default function AddQuotePage() {
           </button>
         </div>
       </form>
-    </div>
+    </Wrapper>
   );
 }

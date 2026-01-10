@@ -1,0 +1,10 @@
+.wrapper {
+    display: grid;
+    grid-template-rows: 2fr 5fr 1fr;
+    min-height: 100vh;
+}
+
+.content {
+    padding: 10px;
+    justify-self: center;
+}

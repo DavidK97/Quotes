@@ -4,7 +4,6 @@ export default function Footer() {
   return (
     <div className={styles.footerContainer}>
       <h3 className={styles.footerText}> © 2025 Quotes API</h3>
-      <button className={styles.darkmodeButton}>Darkmode</button>
     </div>
   );
 }

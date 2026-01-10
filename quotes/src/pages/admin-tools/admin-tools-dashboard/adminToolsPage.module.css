@@ -1,3 +1,4 @@
+
 .container {
   padding: 20px;
 }
@@ -12,7 +13,7 @@
 .link {
   padding: 10px 15px;
   background-color: #e6e8ff;
-  border-radius: 8px;
+  border-radius: 10px;
   text-align: center;
   text-decoration: none;
 }
@@ -25,6 +26,11 @@
   border: 2px solid whitesmoke;
   background: grey;
   grid-column: span 2;
+}
 
-
+.outletContainer {
+  
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 10px;
 }

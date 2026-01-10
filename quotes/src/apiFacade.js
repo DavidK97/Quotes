@@ -5,6 +5,9 @@ function handleHttpErrors(res) {
   if (!res.ok) {
     return Promise.reject({ status: res.status, fullError: res.json() }); //Første promise
   }
+
+  if (res.status === 204) return {};
+  
   return res.json();
 }
 

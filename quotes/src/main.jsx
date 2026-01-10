@@ -19,6 +19,7 @@ import { AdminRoutes } from "./components/security/AdminRoutes.jsx";
 import AdminToolsPage from "./pages/admin-tools/admin-tools-dashboard/AdminToolsPage.jsx";
 import QuoteToolsPage from "./pages/admin-tools/quote-tools/QuoteToolsPage.jsx";
 import ContactPage from "./pages/contactPage/ContactPage.jsx";
+import CategoryToolsPage from "./pages/admin-tools/categoryTools/CategoryToolsPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -56,7 +57,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="admin-tools" element={<AdminToolsPage />}>
             <Route path="users" element={<h2>Edit users</h2>} />
             <Route path="quotes" element={<QuoteToolsPage/>} />
-            <Route path="categories" element={<h2>Edit Categories</h2>} />
+            <Route path="categories" element={<CategoryToolsPage />} />
             <Route path="authors" element={<h2>Edit authors</h2>} />
           </Route>
         </Route>
