@@ -6,10 +6,9 @@ export default function HomePage() {
     const quoteElement = document.getElementById("quote-text");
     const button = document.getElementById("fetch-button");
 
-    
-
     button.addEventListener("click", () => {
       button.style.backgroundColor = "grey";
+
       const randomQuoteId = Math.floor(Math.random() * 10) + 1;
       facade
         .fetchData("quotes/" + randomQuoteId)
@@ -20,7 +19,7 @@ export default function HomePage() {
 
         .catch((error) => {
           quoteElement.innerText = "Could not retrieve quote";
-          quoteElement.style.color = "red";
+         
           console.error(error);
         });
     });
