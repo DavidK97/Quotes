@@ -43,13 +43,18 @@ const fetchData = (endpoint) => {
   return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
 };
 
-const postData = (endpoint) => {
-  const options = makeOptions("POST", true); 
+const postData = (endpoint, body) => {
+  const options = makeOptions("POST", true, body); 
   return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
 }
 
 const deleteData = (endpoint) => {
   const options = makeOptions("DELETE", true); 
+  return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
+}
+
+const putData = (endpoint, body) => {
+  const options = makeOptions("PUT", true, body); 
   return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
 }
 
@@ -107,7 +112,8 @@ const facade = {
   hasUserAccess,
   getUsername,
   postData,
-  deleteData
+  deleteData,
+  putData
 };
 
 export default facade;

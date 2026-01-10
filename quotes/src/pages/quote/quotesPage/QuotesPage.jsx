@@ -3,6 +3,7 @@ import facade from "../../../apiFacade";
 import CategorySelector from "../../../components/categorySelector/CategorySelector";
 import QuoteTable from "../../../components/quoteTable/QuoteTable";
 import QuoteCounter from "../../../components/quoteCounter/QuoteCounter";
+import { Link } from "react-router";
 
 export default function QuotesPage() {
   const [quotes, setQuotes] = useState([]);
@@ -14,7 +15,12 @@ export default function QuotesPage() {
     const promise = facade.fetchData("quotes");
     promise.then((data) => setQuotes(data));
     promise.catch((error) => {
-      console.error("Error: ", error.status);
+      console.error(
+        "Full Error: ",
+        error.fullError,
+        "Error Status:",
+        error.status
+      );
       setErrorMessage("Could not retrieve quotes");
     });
   }
@@ -52,20 +58,24 @@ export default function QuotesPage() {
       );
     });
     promise.catch((error) => {
-      console.error("Error: ", error.status);
+      console.error(
+        "Full Error: ",
+        error.fullError,
+        "Error Status:",
+        error.status
+      );
       setErrorMessage("Could not like quote");
       alert("Something went wrong, Quote could not be liked");
     });
   }
 
   useEffect(() => {
-
     getAllQuotes();
     fetchCategories();
 
     // Cleanup function example
     sessionStorage.setItem("user", "active on quotes page");
-    
+
     return () => {
       sessionStorage.removeItem("user");
     };
@@ -74,6 +84,12 @@ export default function QuotesPage() {
   return (
     <div>
       {errorMessage && <p>{errorMessage}</p>}
+      <div>
+        <Link to="add-quote">
+          <button>Add New Quote</button>
+        </Link>
+      </div>
+
       <div className="quote-table">
         <CategorySelector
           categories={categories}

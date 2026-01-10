@@ -9,7 +9,7 @@ export default function QuoteToolsPage() {
   const blankQuote = { id: "", text: "", category: "", author: "" };
   const [quoteToEdit, setQuoteToEdit] = useState(blankQuote);
 
-  //TODO kald til API
+  // The quote chosen to edit
   function editQuote(quote) {
     setQuoteToEdit(quote);
   }
@@ -23,7 +23,17 @@ export default function QuoteToolsPage() {
   }
 
   //TODO kald til API
-  function updateQuote(quote) {}
+  function updateQuote(quote) {
+    const promise = facade.putData("quotes/" + quote.id, quote);
+    promise
+      .then((updatedQuote) => {
+        setQuotes(
+          quotes.map((q) => (q.id === updatedQuote.id ? updatedQuote : q))
+        );
+        setQuoteToEdit(blankQuote);
+      })
+      .catch((error) => console.error(error));
+  }
 
   function getAllQuotes() {
     const promise = facade.fetchData("quotes");
