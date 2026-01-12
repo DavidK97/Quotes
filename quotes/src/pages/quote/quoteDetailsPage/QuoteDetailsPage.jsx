@@ -31,8 +31,7 @@ export default function QuoteDetailsPage() {
   }, [quoteId, hasAdminAccess, hasUserAccess]);
 
 
-   // Alternative method to restrict user access (if not using a protected route)
-  // "Early return" conditional rendering example
+   // Alternative method to restrict user access (if not using our protected route)
   if (!hasAdminAccess && !hasUserAccess) {
     return <p>Log in as a user or admin to view the quote details</p>;
   }
@@ -41,7 +40,6 @@ export default function QuoteDetailsPage() {
     return <p>{errorMessage}</p>;
   }
  
-  //Example of "loading state" conditional rendering
   if (!quote) {
     return <p>Loading quote...</p>;
   }

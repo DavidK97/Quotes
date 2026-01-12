@@ -8,6 +8,9 @@ export default function DetailCard({ title, children }) {
 }
 
 
+
+
+
 // For example 3.2 (if not using children) and only sending the quote as a prop
 // then one card for each ressource (quotes, author, category) would be needed 
 /*

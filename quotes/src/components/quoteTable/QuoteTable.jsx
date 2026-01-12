@@ -7,9 +7,9 @@ export default function QuoteTable({ quotes, selectedCategory, onLike }) {
   const filteredQuotes =
     selectedCategory === "" // If "Any Category" option is picked
       ? quotes
-      : quotes.filter((quote) => quote.category.title === selectedCategory);
+      : quotes.filter((quote) => quote.category?.title === selectedCategory);
 
-  //Event bubbling example and event handler example
+  
   function handleOnClick(event) {
     console.log("Event target:", event.target.id);
     navigate(`/quotes/${event.target.id}`);
@@ -24,7 +24,7 @@ export default function QuoteTable({ quotes, selectedCategory, onLike }) {
       <td>
         <button
           onClick={(event) => {
-            event.stopPropagation(); //stops bubbling
+            event.stopPropagation();
             onLike(quote.id);
           }}
         >

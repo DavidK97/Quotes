@@ -1,16 +1,19 @@
 const BASE_URL = "https://quote.davidk97.dk/api/v1/";
 const LOGIN_ENDPOINT = "auth/login";
 
+
 function handleHttpErrors(res) {
   if (!res.ok) {
-    return Promise.reject({ status: res.status, fullError: res.json() }); //Første promise
+    
+    return res.json().then((fullError) => {
+      return Promise.reject({ status: res.status, fullError: fullError });
+    });
   }
 
   if (res.status === 204) return {};
   
   return res.json();
 }
-
 
 const setToken = (token) => {
   localStorage.setItem("jwtToken", token);
@@ -32,13 +35,28 @@ const login = (user, password) => {
     password: password,
   });
 
-  
-
   return fetch(BASE_URL + LOGIN_ENDPOINT, options) 
     .then(handleHttpErrors) 
     .then((res) => {
       setToken(res.token); 
     });
+};
+
+const makeOptions = (method, addToken, body) => {
+  var opts = {
+    method: method,
+    headers: {
+      "Content-type": "application/json",
+      Accept: "application/json",
+    },
+  };
+  if (addToken && loggedIn()) {
+    opts.headers["Authorization"] = `Bearer ${getToken()}`;
+  }
+  if (body) {
+    opts.body = JSON.stringify(body);
+  }
+  return opts;
 };
 
 const fetchData = (endpoint) => {
@@ -61,22 +79,6 @@ const putData = (endpoint, body) => {
   return fetch(BASE_URL + endpoint, options).then(handleHttpErrors);
 }
 
-const makeOptions = (method, addToken, body) => {
-  var opts = {
-    method: method,
-    headers: {
-      "Content-type": "application/json",
-      Accept: "application/json",
-    },
-  };
-  if (addToken && loggedIn()) {
-    opts.headers["Authorization"] = `Bearer ${getToken()}`;
-  }
-  if (body) {
-    opts.body = JSON.stringify(body);
-  }
-  return opts;
-};
 
 const getUserRoles = () => {
   const token = getToken();
@@ -85,8 +87,10 @@ const getUserRoles = () => {
     const decodedClaims = JSON.parse(window.atob(payloadBase64));
     const roles = decodedClaims.roles;
     return roles;
-  } else return "";
+  }
+   else return "";
 };
+
 
 const getUsername = () => {
   const token = getToken();

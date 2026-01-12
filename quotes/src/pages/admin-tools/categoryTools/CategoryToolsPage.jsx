@@ -89,8 +89,8 @@ export default function CategoryToolsPage() {
   return (
     <Wrapper>
       <h3>Category Tools Page</h3>
-
       <CategoryFormAdminTool createCategory={createCategory} />
+      
       <CategoryTableAdminTool
         categories={categories}
         deleteCategoryById={deleteCategoryById}

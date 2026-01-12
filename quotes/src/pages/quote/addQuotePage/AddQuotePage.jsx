@@ -20,20 +20,18 @@ const Wrapper = styled.section`
 
     @media (max-width: 700px) {
       flex-direction: column;
-      align-items: stretch;   
+      align-items: stretch;
     }
   }
 
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     padding: 5px;
     border: 1px solid grey;
     border-radius: 10px;
   }
-
-  
 `;
-
-
 
 export default function AddQuotePage() {
   const navigate = useNavigate();
@@ -48,7 +46,6 @@ export default function AddQuotePage() {
     categoryId: "",
   });
 
-  // Live validation example
   const isInvalid = newQuote.text.length < 10;
 
   function handleChange(event) {
@@ -60,7 +57,7 @@ export default function AddQuotePage() {
 
     const body = {
       text: newQuote.text,
-      category: { id: newQuote.categoryId },
+      category: { id: Number(newQuote.categoryId) },
       author: {
         name: newQuote.authorName,
         country: newQuote.authorCountry,
@@ -72,8 +69,13 @@ export default function AddQuotePage() {
     const promise = facade.postData("quotes", body);
     promise.then(() => navigate("/quotes"));
     promise.catch((error) => {
-      console.error(error);
-      setErrorMessage("Could not create quote");
+      console.error(
+        "Full Error: ",
+        error.fullError,
+        "Error Status:",
+        error.status
+      );
+      setErrorMessage("Could create quote");
     });
   }
 
@@ -90,7 +92,7 @@ export default function AddQuotePage() {
           onChange={handleChange}
           required
         />
-      
+
         <label>Name</label>
         <input
           id="authorName"
@@ -110,7 +112,7 @@ export default function AddQuotePage() {
           value={newQuote.authorBirth}
           onChange={handleChange}
         />
-        <label>Category</label> {/* TODO replace hardcoded categories */}
+        <label>Category</label>
         <select
           id="categoryId"
           value={newQuote.categoryId}

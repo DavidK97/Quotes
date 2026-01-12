@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import facade from "../../apiFacade";
 
 export default function HomePage() {
+
   useEffect(() => {
     const quoteElement = document.getElementById("quote-text");
     const button = document.getElementById("fetch-button");
@@ -10,6 +11,7 @@ export default function HomePage() {
       button.style.backgroundColor = "grey";
 
       const randomQuoteId = Math.floor(Math.random() * 10) + 1;
+
       facade
         .fetchData("quotes/" + randomQuoteId)
         .then((data) => {
@@ -24,6 +26,8 @@ export default function HomePage() {
         });
     });
   }, []);
+
+  
 
   return (
     <div>

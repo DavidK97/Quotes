@@ -30,7 +30,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="help" element={<HelpPage />}>
           <Route
             path="faq"
-            element={<h2>faq page med hvordan man bruger API'et</h2>}
+            element={<h2>FAQ and how to use it</h2>}
           />
           <Route path="contact"element={<ContactPage />} />
         </Route>
@@ -62,7 +62,7 @@ createRoot(document.getElementById("root")).render(
           </Route>
         </Route>
 
-         <Route path="*" element={<h2>404 – Page not found</h2>} />
+         <Route path="*" element={<h2>404 - Page not found</h2>} />
 
       </Route>
     </Routes>

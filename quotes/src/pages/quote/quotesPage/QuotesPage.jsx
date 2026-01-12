@@ -36,9 +36,6 @@ export default function QuotesPage() {
     }
   }
 
-  //TODO, så man ikke kan like flere gange
-  //TODO Lav conditional rendering så man ikke kan se like-knappen medmindre man er logget ind
-  //Uncught promise fordi vores backend returnerer en tekst-streng og ikke JSON.
   function likeQuote(quoteId) {
     const username = facade.getUsername();
 
@@ -71,6 +68,7 @@ export default function QuotesPage() {
 
   useEffect(() => {
     getAllQuotes();
+
     fetchCategories();
 
     // Cleanup function example

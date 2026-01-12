@@ -20,12 +20,17 @@ export default function Navbar() {
   };
 
   const login = (user, pass) => {
-    facade.login(user, pass).then(() => {
-      setLoggedIn(true);
-      console.log("Now we are logged in");
-      setUsername(facade.getUsername());
-      setRoles(facade.getUserRoles());
-    });
+    facade
+      .login(user, pass)
+      .then(() => {
+        setLoggedIn(true);
+        setUsername(facade.getUsername());
+        setRoles(facade.getUserRoles());
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Wrong password or username");
+      });
   };
 
   useEffect(() => {

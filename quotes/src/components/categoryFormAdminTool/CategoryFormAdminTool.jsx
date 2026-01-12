@@ -9,7 +9,9 @@ export default function CategoryFormAdminTool({ createCategory }) {
     const category = {
       title: categoryTitel.current.value,
     };
+    
     createCategory(category);
+
     categoryTitel.current.value = "";
   }
 
