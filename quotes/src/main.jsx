@@ -18,8 +18,9 @@ import HelpPage from "./pages/helpPage/HelpPage.jsx";
 import { AdminRoutes } from "./components/security/AdminRoutes.jsx";
 import AdminToolsPage from "./pages/admin-tools/admin-tools-dashboard/AdminToolsPage.jsx";
 import QuoteToolsPage from "./pages/admin-tools/quote-tools/QuoteToolsPage.jsx";
-import ContactPage from "./pages/contactPage/ContactPage.jsx";
+import ContactPage from "./pages/helpPage/contactPage/ContactPage.jsx";
 import CategoryToolsPage from "./pages/admin-tools/categoryTools/CategoryToolsPage.jsx";
+import FaqPage from "./pages/helpPage/faqPage/FaqPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -28,17 +29,13 @@ createRoot(document.getElementById("root")).render(
         <Route index element={<HomePage />} />
 
         <Route path="help" element={<HelpPage />}>
-          <Route
-            path="faq"
-            element={<h2>FAQ and how to use it</h2>}
-          />
+          <Route path="faq" element={<FaqPage />} />
           <Route path="contact"element={<ContactPage />} />
         </Route>
 
         <Route path="quotes">
           <Route index element={<QuotesPage />} />
-
-          <Route path=":quoteId" element={<QuoteDetailsPage />} errorElement={<h2>Could not find quote</h2>} />
+          <Route path=":quoteId" element={<QuoteDetailsPage />} />
           <Route path="add-quote" element={<AddQuotePage />} />
         </Route>
 
